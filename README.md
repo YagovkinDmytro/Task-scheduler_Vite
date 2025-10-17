@@ -1,6 +1,6 @@
-#Task-scheduler Vite
+# Task-scheduler Vite
 
-## First of all, let's write down the basic requirements for the interface and the logic of the program:
+## The basic requirements for the interface and the logic of the program:
 
 - The interface should consist of several parts: A header with information about tasks and filters
 - A form with an input field for creating new tasks
