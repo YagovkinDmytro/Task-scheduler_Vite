@@ -9,13 +9,7 @@ export const TaskForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    dispatch(
-      addTask({
-        id: crypto.randomUUID(),
-        completed: false,
-        text: form.elements.text.value,
-      })
-    );
+    dispatch(addTask(form.elements.text.value));
     form.reset();
   };
 
