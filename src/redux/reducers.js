@@ -1,3 +1,10 @@
+import { createReducer } from "@reduxjs/toolkit";
+import {
+  addTask,
+  deleteTask,
+  toggleCompleted,
+  setStatusFilter,
+} from "../redux/actions";
 import { statusFilters } from "./constants";
 
 const tasksInitialState = [
@@ -8,15 +15,15 @@ const tasksInitialState = [
   { id: 4, text: "Build amazing apps", completed: false },
 ];
 
-export const tasksReducer = (state = tasksInitialState, action) => {
-  switch (action.type) {
-    case "tasks/addTask": {
+export const tasksReducer = createReducer(tasksInitialState, (bilder) => {
+  bilder
+    .addCase(addTask, (state, action) => {
       return [...state, action.payload];
-    }
-    case "tasks/deleteTask": {
+    })
+    .addCase(deleteTask, (state, action) => {
       return state.filter((task) => task.id !== action.payload);
-    }
-    case "tasks/toggleCompleted": {
+    })
+    .addCase(toggleCompleted, (state, action) => {
       return state.map((task) => {
         if (task.id !== action.payload) {
           return task;
@@ -26,25 +33,55 @@ export const tasksReducer = (state = tasksInitialState, action) => {
           completed: !task.completed,
         };
       });
-    }
-    default:
-      return state;
-  }
-};
+    });
+});
 
 const filtersInitialState = {
   status: statusFilters.all,
 };
 
-export const filtersReducer = (state = filtersInitialState, action) => {
-  switch (action.type) {
-    case "filters/setStatusFilter": {
-      return {
-        ...state,
-        status: action.payload,
-      };
-    }
-    default:
-      return state;
-  }
-};
+export const filtersReducer = createReducer(filtersInitialState, (builder) => {
+  builder.addCase(setStatusFilter, (state, action) => {
+    return {
+      ...state,
+      status: action.payload,
+    };
+  });
+});
+
+// export const tasksReducer = (state = tasksInitialState, action) => {
+//   switch (action.type) {
+//     case "tasks/addTask": {
+//       return [...state, action.payload];
+//     }
+//     case "tasks/deleteTask": {
+//       return state.filter((task) => task.id !== action.payload);
+//     }
+//     case "tasks/toggleCompleted": {
+//       return state.map((task) => {
+//         if (task.id !== action.payload) {
+//           return task;
+//         }
+//         return {
+//           ...task,
+//           completed: !task.completed,
+//         };
+//       });
+//     }
+//     default:
+//       return state;
+//   }
+// };
+
+// export const filtersReducer = (state = filtersInitialState, action) => {
+//   switch (action.type) {
+//     case "filters/setStatusFilter": {
+//       return {
+//         ...state,
+//         status: action.payload,
+//       };
+//     }
+//     default:
+//       return state;
+//   }
+// };
