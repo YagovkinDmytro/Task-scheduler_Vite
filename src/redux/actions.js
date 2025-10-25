@@ -1,20 +1,22 @@
-import { createAction } from "@reduxjs/toolkit";
+// import { createAction } from "@reduxjs/toolkit";
 
-export const addTask = createAction("tasks/addTask", (text) => {
-  return {
-    payload: {
-      id: crypto.randomUUID(),
-      completed: false,
-      text,
-    },
-  };
-});
+// export const addTask = createAction("tasks/addTask", (text) => {
+// return {
+//   payload: {
+//     id: crypto.randomUUID(),
+//     completed: false,
+//     text,
+//   },
+// };
+// });
 
-export const deleteTask = createAction("tasks/deleteTask");
+// export const deleteTask = createAction("tasks/deleteTask");
 
-export const toggleCompleted = createAction("tasks/toggleCompleted");
+// export const toggleCompleted = createAction("tasks/toggleCompleted");
 
-export const setStatusFilter = createAction("filters/setStatusFilter");
+// export const setStatusFilter = createAction("filters/setStatusFilter");
+
+///////////////////////////////////////////////////////////////////////////////
 
 // Оголошення фабрик екшенів це рутинна задача де багато шаблонного коду,
 // тому бібліотека Redux Toolkit надає нам допоміжну функцію createAction(type) яка спрощує цей процес.
